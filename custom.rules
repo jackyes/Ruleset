@@ -1,5 +1,5 @@
 alert tcp any any -> any ![80,8080] (msg:"SURICATA HTTP on unusual port"; flow:to_server; app-layer-protocol:http; threshold: type limit, track by_src, seconds 60, count 1; sid:1000001; rev:1;)
-alert tcp any any -> any 80 (msg:"SURICATA non-HTTP on TCP port 80"; flow:to_server; app-layer-protocol:!http; threshold: type limit, track by_src, seconds 60, count 1; sid:1000002; rev:1;)
+#alert tcp any any -> any 80 (msg:"SURICATA non-HTTP on TCP port 80"; flow:to_server; app-layer-protocol:!http; threshold: type limit, track by_src, seconds 60, count 1; sid:1000002; rev:1;)
 
 alert tcp any any -> any ![443,465,587,853] (msg:"SURICATA TLS on unusual port"; flow:to_server; app-layer-protocol:tls; threshold: type limit, track by_src, seconds 60, count 1; sid:1000003; rev:1;)
 alert tcp any any -> any [443,465,853] (msg:"SURICATA non-TLS on TLS port"; flow:to_server; app-layer-protocol:!tls; threshold: type limit, track by_src, seconds 60, count 1; sid:1000004; rev:1;)

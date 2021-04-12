@@ -23,7 +23,7 @@ alert tcp any any -> any 53 (msg:"SURICATA non-DNS-TCP on TCP port 53"; flow:to_
 alert udp any any -> any !53 (msg:"SURICATA DNS-UDP on unusual port"; flow:to_server; app-layer-protocol:dns; threshold: type limit, track by_src, seconds 60, count 1; sid:1000015; rev:1;)
 alert udp any any -> any 53 (msg:"SURICATA non-DNS-UDP on UDP port 53"; flow:to_server; app-layer-protocol:!dns; threshold: type limit, track by_src, seconds 60, count 1; sid:1000016; rev:1;)
 
-alert tcp any any -> any 502 (msg:"SURICATA TCP port 502 but not MODBUS"; flow:to_server; app-layer-protocol:!modbus; threshold: type limit, track by_src, seconds 60, count 1; sid:1000017; rev:1;)
+#alert tcp any any -> any 502 (msg:"SURICATA TCP port 502 but not MODBUS"; flow:to_server; app-layer-protocol:!modbus; threshold: type limit, track by_src, seconds 60, count 1; sid:1000017; rev:1;)
 
 alert tcp any any -> any ![25,587,465] (msg:"SURICATA SMTP but not tcp port 25,587,465"; flow:to_server; app-layer-protocol:smtp; threshold: type limit, track by_src, seconds 60, count 1; sid:1000018; rev:1;)
 alert tcp any any -> any [25,587,465] (msg:"SURICATA TCP port 25,587,465 but not SMTP"; flow:to_server; app-layer-protocol:!smtp; threshold: type limit, track by_src, seconds 60, count 1; sid:1000019; rev:1;)
